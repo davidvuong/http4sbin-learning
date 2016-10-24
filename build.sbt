@@ -1,6 +1,6 @@
 import sbt.Keys._
 
-name := "http4sbin-david"
+name := "http4sbin-learning"
 
 version := "0.0.1"
 
