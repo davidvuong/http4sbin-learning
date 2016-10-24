@@ -4,6 +4,7 @@ In no particular order:
 
 - Logging middleware that logs the request and the response code. Should be generic on "how" you log (perhaps pass in 
 (String) => Unit)
+- All requests, and responses should be in JSON. 
 - Some endpoints (in no particular order - just some random ones I think are fun to impl):
 
   - /ip - GET - Returns Origin IP
