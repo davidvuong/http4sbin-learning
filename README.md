@@ -17,3 +17,6 @@ In no particular order:
   
 - Some tests. Ideally use Scalacheck
 
+http://http4sbin-learning.herokuapp.com/
+
+https://travis-ci.org/dbousamra/http4sbin-learning
