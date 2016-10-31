@@ -1,4 +1,4 @@
-package com.github.http4sbin.http
+package com.github.http4sbin.http.services
 
 import org.http4s.HttpService
 import org.http4s.dsl._

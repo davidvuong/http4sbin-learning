@@ -1,7 +1,8 @@
 package com.github.http4sbin
 
 import com.github.http4sbin.http.middleware.LoggingMiddleware
-import com.github.http4sbin.http.{PingPongService, ExampleService, UserAgentService}
+import com.github.http4sbin.http.services.{ExampleService, HeaderService, PingPongService, UserAgentService}
+
 import org.http4s.HttpService
 import org.http4s.server.syntax._
 import org.http4s.server.ServerApp
@@ -16,7 +17,8 @@ object Boot extends ServerApp {
   val service = List(
     PingPongService.service,
     UserAgentService.service,
-    ExampleService.service
+    ExampleService.service,
+    HeaderService.service
   ).reduce((combined, service) => combined orElse service)
   val serviceWithMiddleware = middlewareStack(service)
 
