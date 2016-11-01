@@ -3,7 +3,7 @@ package com.github.http4sbin.http.middleware
 import scalaz.concurrent.Task
 import org.http4s.HttpService
 
-object LoggingMiddleware {
+object PrintRequestResponseMiddleware {
   def apply(service: HttpService): HttpService = {
     HttpService.lift { request =>
       Task {
