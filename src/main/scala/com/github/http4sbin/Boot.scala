@@ -13,6 +13,7 @@ import org.http4s.server.blaze.BlazeBuilder
 import scala.util.Try
 
 object Boot extends ServerApp {
+
   type Middleware = HttpService => HttpService
 
   val middlewareStack: Middleware = PrintRequestResponseMiddleware(_)

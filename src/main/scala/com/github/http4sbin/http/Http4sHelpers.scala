@@ -4,6 +4,7 @@ import org.http4s.{Headers, Query, Request}
 import argonaut._, Argonaut._
 
 object Http4sHelpers {
+
   def getHeadersAsJson(headers: Headers): Json =
     headers.foldLeft(jEmptyObject)((json, h) => json.->:(h.name.value := h.value))
 

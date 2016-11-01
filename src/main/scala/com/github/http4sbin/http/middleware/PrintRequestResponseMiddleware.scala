@@ -4,6 +4,7 @@ import scalaz.concurrent.Task
 import org.http4s.HttpService
 
 object PrintRequestResponseMiddleware {
+
   def apply(service: HttpService): HttpService = {
     HttpService.lift { request =>
       Task {
