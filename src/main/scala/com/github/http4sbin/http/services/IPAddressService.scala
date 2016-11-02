@@ -2,11 +2,12 @@ package com.github.http4sbin.http.services
 
 import org.http4s.HttpService
 import org.http4s.dsl._
-import org.http4s.argonaut.ArgonautInstances
 
 import argonaut._, Argonaut._
 
-object IPAddressService extends ArgonautInstances {
+import com.github.http4sbin.http.ArgonautInstances._
+
+object IPAddressService {
 
   val service = HttpService {
     case req @ GET -> Root / "ip" => {
