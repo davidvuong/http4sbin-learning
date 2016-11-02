@@ -2,14 +2,17 @@ package com.github.http4sbin.http.services
 
 import org.http4s.HttpService
 import org.http4s.dsl._
+import org.http4s.argonaut.ArgonautInstances
 
-import com.github.http4sbin.http.Http4sHelpers.getHeadersAsJson
+import argonaut._, Argonaut._
 
-object HeaderService {
+import com.github.http4sbin.http.Http4sHelpers.HeadersEncodeJson
+
+object HeaderService extends ArgonautInstances {
 
   val service = HttpService {
     case req @ GET -> Root / "headers" => {
-      Ok(getHeadersAsJson(req.headers).toString)
+      Ok(req.headers.asJson)
     }
   }
 }

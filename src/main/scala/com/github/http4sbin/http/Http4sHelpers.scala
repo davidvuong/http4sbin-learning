@@ -1,22 +1,24 @@
 package com.github.http4sbin.http
 
-import org.http4s.{Headers, Query, Request}
+import org.http4s.{Header, Headers, Request}
 import argonaut._, Argonaut._
 
 object Http4sHelpers {
 
-  def getHeadersAsJson(headers: Headers): Json =
-    headers.foldLeft(jEmptyObject)((json, h) => json.->:(h.name.value := h.value))
+  implicit val HeaderEncodeJson = EncodeJson[Header] { h =>
+    Json(h.name.value := h.value)
+  }
 
-  def getQueryAsJson(query: Query): Json =
-    query.foldLeft(jEmptyObject)((json, t) => json.->:(t._1 := t._2))
+  implicit val HeadersEncodeJson = EncodeJson[Headers] { hs =>
+    hs.foldLeft(jEmptyObject)((json, h) => json.deepmerge(h.asJson))
+  }
 
   def getAbsoluteURI(request: Request): String = {
-    val isSecure = request.isSecure match {
-      case None           => false
-      case Some(security) => security
+    val protocol = request.isSecure match {
+      case None        => "http"
+      case Some(false) => "http"
+      case Some(true)  => "https"
     }
-    val protocol = if (isSecure) "https://" else "http://"
-    s"$protocol${request.serverAddr}${request.uri.renderString}"
+    s"$protocol://${request.serverAddr}${request.uri.renderString}"
   }
 }
