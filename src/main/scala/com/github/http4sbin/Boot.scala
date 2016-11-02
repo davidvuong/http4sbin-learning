@@ -2,7 +2,7 @@ package com.github.http4sbin
 
 import com.github.http4sbin.http.middleware.PrintRequestResponseMiddleware
 import com.github.http4sbin.http.services.{
-  HeaderService, PingPongService, UserAgentService, IPAddressService, GetService
+  HeaderService, PingPongService, UserAgentService, IPAddressService, GetService, BytesService
 }
 
 import org.http4s.HttpService
@@ -22,7 +22,8 @@ object Boot extends ServerApp {
     UserAgentService.service,
     HeaderService.service,
     IPAddressService.service,
-    GetService.service
+    GetService.service,
+    BytesService.service
   ).reduce((combined, service) => combined orElse service)
   val serviceWithMiddleware = middlewareStack(service)
 
